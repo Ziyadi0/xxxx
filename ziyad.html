@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لعبة الرياضيات التعليمية</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- نظام القوائم -->
+    <div class="menu-container" id="loginMenu">
+        <div class="menu-box">
+            <h2>تسجيل الدخول</h2>
+            <input type="email" id="loginEmail" placeholder="البريد الإلكتروني">
+            <input type="password" id="loginPassword" placeholder="كلمة المرور">
+            <button onclick="handleLogin()">الدخول</button>
+            <p>ليس لديك حساب؟ <a onclick="showMenu('register')">إنشاء حساب</a></p>
+            <p><a onclick="showMenu('support')">تواصل مع الدعم الفني</a></p>
+            <p><a onclick="showAdminLogin()">لوحة الإدارة</a></p>
+        </div>
+    </div>
+
+    <div class="menu-container hidden" id="registerMenu">
+        <div class="menu-box">
+            <h2>إنشاء حساب</h2>
+            <input type="text" id="registerName" placeholder="اسم المستخدم">
+            <input type="email" id="registerEmail" placeholder="البريد الإلكتروني">
+            <input type="password" id="registerPassword" placeholder="كلمة المرور">
+            <button onclick="handleRegister()">إنشاء الحساب</button>
+            <p>لديك حساب؟ <a onclick="showMenu('login')">تسجيل الدخول</a></p>
+        </div>
+    </div>
+
+    <!-- واجهة اللعبة -->
+    <div class="menu-container hidden" id="gameMenu">
+        <div class="game-container">
+            <h2>مرحبا، <span id="username"></span>!</h2>
+            <div class="level-indicator">
+                <span id="levelDescription">المرحلة الابتدائية الأولى</span><br>
+                المستوى: <span id="currentLevel">1</span>
+            </div>
+            <div class="expression-display" id="expressionDisplay">...</div>
+            <div class="input-container" id="inputContainer">
+                <input type="text" id="userInput" placeholder="الإجابة">
+                <button onclick="checkAnswer()">تحقق</button>
+            </div>
+            <button id="startButton" onclick="startGame()">ابدأ اللعبة</button>
+            <div class="timer" id="timer">الوقت المتبقي: 30</div>
+            <button onclick="logout()" style="margin-top:20px;">تسجيل الخروج</button>
+        </div>
+    </div>
+
+    <!-- تواصل مع الدعم الفني -->
+    <div class="menu-container hidden" id="supportMenu">
+        <div class="menu-box">
+            <h2>تواصل مع الدعم الفني</h2>
+            <input type="text" id="supportName" placeholder="اسمك">
+            <input type="email" id="supportEmail" placeholder="البريد الإلكتروني القديم">
+            <input type="password" id="supportPassword" placeholder="كلمة المرور القديمة">
+            <textarea id="supportMessage" placeholder="رسالتك" rows="4"></textarea>
+            <button onclick="sendSupportMessage()">إرسال</button>
+            <p><a onclick="showMenu('login')">العودة إلى القائمة الرئيسية</a></p>
+        </div>
+    </div>
+
+    <!-- لوحة الإدارة -->
+    <div class="menu-container hidden" id="adminMenu">
+        <div class="admin-panel">
+            <h2>لوحة الإدارة</h2>
+            <div id="adminLogin">
+                <input type="password" id="adminPassword" placeholder="رمز الإدارة">
+                <button onclick="checkAdminPassword()">الدخول</button>
+            </div>
+            <div id="adminContent" class="hidden">
+                <button onclick="loadAllPlayers()">عرض جميع اللاعبين</button>
+                <div id="playersList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
